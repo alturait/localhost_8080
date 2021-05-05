@@ -1,0 +1,99 @@
+﻿<%@ Master Language="VB" CodeFile="CustomerMaster.master.vb" Inherits="CustomerMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <script src="../ddmenu.js"></script>
+    <link href="App_Themes/LubeTracker/ddmenu.css" rel="stylesheet" />
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <table style="width: 1024px">
+            <tr>
+                <td style="padding: 5px; vertical-align: bottom; text-align: center;">
+                    <asp:ImageButton ID="logobtn" runat="server" Height="80" />
+                </td>
+                <td>
+                    <table style="width: 90%">
+                        <tr>
+                            <td style="text-align: center"><asp:Label ID="namelbl" runat="server" Font-Bold="True" Font-Size="Large"></asp:Label></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center"><a href="Company.aspx"><asp:Label ID="companylbl" runat="server" Text="480-295-1676" Font-Bold="True" Font-Size="Small"></asp:Label></a><br /><asp:LinkButton ID="logoffbtn" runat="server" Text="Log Off" /></td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table style="width: 100%">
+                        <tr>
+                            <td style="text-align: center"><asp:ImageButton ID="homebtn" runat="server" ImageUrl="../Images/home.png" Width="80px" ToolTip="HOME" /></td>
+                            <td style="text-align: center"><asp:ImageButton ID="lubetrackerbtn" runat="server" ImageUrl="../Images/lubetracker.jpg" Width="50px" ToolTip="LUBETRACKER" /></td>
+                            <td style="text-align: center"><asp:ImageButton ID="catalogbtn" runat="server" ImageUrl="../Images/catalog.jpg" Width="50px" ToolTip="CATALOG" /></td>
+                            <td style="text-align: center"><asp:ImageButton ID="stockroombtn" runat="server" ImageUrl="../Images/stockroom.jpg" Width="50px" ToolTip="STOCK ROOM" /></td>
+                            <td style="text-align: center"><asp:ImageButton ID="ordersbtn" runat="server" ImageUrl="../Images/orders.jpg" Width="50px" ToolTip="ORDERS" /></td>
+                            <td style="text-align: right">
+                                <asp:LinkButton ID="cartbtn" runat="server" Text="View Cart" /><br />
+                                <asp:Label ID="cartcountlbl" runat="server"></asp:Label><br />
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center">HOME</td>
+                            <td style="text-align: center">LUBETRACKER</td>
+                            <td style="text-align: center">CATALOG</td>
+                            <td style="text-align: center">STOCK ROOM</td>
+                            <td style="text-align: center">ORDERS</td>
+                            <td style="text-align: right">
+                                &nbsp;</td>
+                        </tr>
+                    </table>                
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 3px; text-align: left; background-color: #000099;" colspan="3">
+                    <table style="width: 100%">
+                        <tr>
+                            <td style="color: #FFFFFF">
+                                <asp:Label ID="submenulbl" runat="server" Text="Label"></asp:Label>
+                            </td>
+                            <td style="text-align: right">
+                                <asp:Panel ID="lubetrackerpanel" runat="server" DefaultButton="esearchbtn" Visible="False">
+                                    <asp:TextBox ID="esearchterm" runat="server" Width="100" Font-Size="Small"></asp:TextBox>
+                                    <asp:LinkButton ID="esearchbtn" runat="server" Text="Search Equipment" ForeColor="White" />
+                                </asp:Panel>
+                                <asp:Panel ID="pnsearchpanel" runat="server" DefaultButton="searchbtn" Visible="False">
+                                    <asp:Label ID="Label1" runat="server" Text="Part Number" Font-Bold="True" ForeColor="White"></asp:Label>
+                                    <asp:TextBox ID="searchterm" runat="server" Width="100" Font-Size="Small"></asp:TextBox>
+                                    <asp:LinkButton ID="searchbtn" runat="server" Text="Search Catalog" ForeColor="White" />
+                                </asp:Panel>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+                        
+                    </asp:ContentPlaceHolder>
+                </td>
+            </tr>
+            <tr>
+                <td style="font-size: x-small; text-align: center;" colspan="3">
+                    Copyright 2015 Desert Fleet Outfitters. All Rights Reserved.<br />
+                    <asp:Label ID="ssIDlbl" runat="server"></asp:Label>
+                </td>
+            </tr>
+        </table>
+        <asp:SqlDataSource ID="SqlCategory" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [categoryID], [category] FROM [t_category] WHERE ([parentID] = @parentID) ORDER BY [category]">
+            <SelectParameters>
+                <asp:Parameter DefaultValue="0" Name="parentID" />
+            </SelectParameters>
+        </asp:SqlDataSource>
+    </form>
+</body>
+</html>

@@ -1,0 +1,59 @@
+﻿<%@ Master Language="VB" CodeFile="MasterPage.master.vb" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <script src="ddmenu.js"></script>
+    <link href="App_Themes/LubeTracker/ddmenu.css" rel="stylesheet" />
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <table style="width: 1024px">
+            <tr>
+                <td style="padding: 5px; vertical-align: bottom; width: 300px; text-align: center;">
+                    <asp:ImageButton ID="logobtn" runat="server" Height="80" />
+                </td>
+                <td style="padding: 5px; text-align: center;">
+                    <asp:Label ID="Label2" runat="server" Text="Serving Arizona's Mining & Construction Industries" Font-Italic="True" Font-Size="Medium"></asp:Label><br/>
+                    <asp:Label ID="Label1" runat="server" Text="5002 SOUTH 40TH STREET - SUITE C - PHOENIX, AZ - 85040" Font-Size="X-Small"></asp:Label><br />
+                    <asp:Label ID="phonelbl" runat="server" Text="602-441-0205" Font-Bold="True" Font-Size="XX-Large"></asp:Label>
+                </td>
+                <td style="text-align: right; width: 300px; text-align: center;">
+                    <asp:LinkButton ID="lubetrackerbtn" runat="server" Text="Sign In" /><br />
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 5px; text-align: center; background-color: #000000; color: #FFFFFF;" colspan="3">
+                    <a href="Default.aspx" style="color: #FFFFFF">Home</a> | 
+                    <a href="Kitting.aspx" style="color: #FFFFFF">Service Kits</a> | 
+                    <a href="InventoryManagement.aspx" style="color: #FFFFFF">Inventory Management</a> | 
+                    <a href="LubeTrackerApp.aspx" style="color: #FFFFFF">LubeTracker</a> | 
+                    <a href="Catalog.aspx?categoryID=0" style="color: #FFFFFF">Catalog</a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+                        
+                    </asp:ContentPlaceHolder>
+                </td>
+            </tr>
+            <tr>
+                <td style="font-size: x-small; text-align: center;" colspan="3">
+                    Copyright 2015 Desert Fleet Outfitters. All Rights Reserved.<br />
+                    <asp:Label ID="ssIDlbl" runat="server"></asp:Label>
+                </td>
+            </tr>
+        </table>
+        <asp:SqlDataSource ID="SqlCategory" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [categoryID], [category] FROM [t_category] WHERE ([parentID] = @parentID) ORDER BY [category]">
+            <SelectParameters>
+                <asp:Parameter DefaultValue="0" Name="parentID" />
+            </SelectParameters>
+        </asp:SqlDataSource>
+    </form>
+</body>
+</html>

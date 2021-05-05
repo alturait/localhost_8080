@@ -1,0 +1,61 @@
+﻿<%@ Master Language="VB" CodeFile="MobileMaster.master.vb" Inherits="CustomerMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <script src="../ddmenu.js"></script>
+    <link href="App_Themes/LubeTracker/ddmenu.css" rel="stylesheet" />
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <table style="width: 1024px">
+            <tr>
+                <td style="padding: 5px; vertical-align: bottom; text-align: center;width: 200px">
+                    <asp:ImageButton ID="logobtn" runat="server" Height="80" />
+                </td>
+                <td>
+                    <table style="width: 90%">
+                        <tr>
+                            <td style="text-align: center"><asp:Label ID="namelbl" runat="server" Font-Bold="True" Font-Size="XX-Large">WELCOME!</asp:Label></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center"><a href="Company.aspx"><asp:Label ID="companylbl" runat="server" Text="480-295-1676" Font-Bold="True" Font-Size="XX-Large"></asp:Label></a></td>
+                        </tr>
+                    </table>
+                </td>
+                <td style="text-align: center;width: 200px">
+                    <asp:Button ID="logoffbtn" runat="server" Text="MAIN SITE" Font-Size="XX-Large" />
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 3px; text-align: left; background-color: #000099;" colspan="3">
+                    <table style="width: 100%">
+                        <tr>
+                            <td style="color: #FFFFFF">
+                                
+                            </td>
+                            <td style="text-align: right"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+                        
+                    </asp:ContentPlaceHolder>
+                </td>
+            </tr>
+            <tr>
+                <td style="font-size: small; text-align: center;" colspan="3">
+                    Copyright 2015 Desert Fleet Outfitters. All Rights Reserved.
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

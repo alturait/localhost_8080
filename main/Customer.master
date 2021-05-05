@@ -1,0 +1,81 @@
+﻿<%@ Master Language="VB" CodeFile="Customer.master.vb" Inherits="EST_Customer" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <table style="background-color: #FFFFFF; width: 1024px;">
+            <tr>    
+                <td colspan="3">
+                    <table style="width: 100%">
+                        <tr>
+                            <td style="text-align: left;" rowspan="2">
+                                <asp:ImageButton ID="logobtn" runat="server" />
+                            </td>
+                            <td rowspan="2" style="text-align: center;">
+                                <asp:Label ID="namelbl" runat="server" Font-Bold="True" Font-Size="Medium"></asp:Label>
+                                <br />
+                                <asp:LinkButton ID="myaccountbtn" runat="server" CausesValidation="False" />
+                                <asp:Label ID="mycompanylbl" runat="server" Font-Italic="True"></asp:Label>
+                                <br /><br />
+                                <asp:LinkButton ID="loginbtn" runat="server" Text="Log Off" CssClass="push_button1 gold" CausesValidation="False" />
+                            </td>
+                            <td style="text-align: right; width: 500px;">
+                                <asp:DropDownList ID="assetsdd" runat="server" DataSourceID="SqlAssets" DataTextField="eassetID" DataValueField="equipmentID" AppendDataBoundItems="True" AutoPostBack="True" Font-Bold="True" Font-Size="Medium">
+                                    <asp:ListItem Value="0">Select Equipment</asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:LinkButton ID="addequipmentbtn" runat="server" Text="New" CssClass="push_button1 orange" CausesValidation="False" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right;">
+                                <asp:LinkButton ID="homebtn" runat="server" Text="Home" CssClass="push_button1 orange" CausesValidation="False" />
+                                <asp:LinkButton ID="catalogbtn" runat="server" Text="Catalog" CssClass="push_button1 orange" />
+                                <asp:LinkButton ID="favoritesbtn" runat="server" Text="Favorites" CssClass="push_button1 orange" CausesValidation="False" />
+                                <asp:LinkButton ID="equipmentbtn" runat="server" Text="Assets" CssClass="push_button1 orange" CausesValidation="False" />
+                                <asp:LinkButton ID="kitsbtn" runat="server" Text="Kits" CssClass="push_button1 orange" CausesValidation="False" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background-color: #000000; padding-top: 10px;" colspan="3"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+                        
+                    </asp:ContentPlaceHolder>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <asp:Label ID="sessionlbl" runat="server"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center" colspan="3">
+                    <p>© Ken Gardner 2014. All Rights Reserved. LUBETRACKER™ is a registered trademark.</p>
+                </td>
+            </tr>
+        </table>
+    <asp:SqlDataSource ID="SqlAssets" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [equipmentID], [equipment_oem] + ' ' + [equipment_model] + ' - ' + [assetID] as eassetID FROM [t_equipment] WHERE ([companyID] = @companyID) ORDER BY equipment_oem,equipment_model,assetID">
+        <SelectParameters>
+            <asp:SessionParameter Name="companyID" SessionField="selected_companyID" Type="Int32" />
+        </SelectParameters>
+    </asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlAssetsByUser" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [equipmentID], [equipment_oem] + ' ' + [equipment_model] + ' - ' + [assetID] as eassetID FROM [v_user_equipment] WHERE ([userID] = @userID) ORDER BY equipment_oem,equipment_model,assetID">
+        <SelectParameters>
+            <asp:SessionParameter Name="userID" SessionField="userID" Type="Int32" />
+        </SelectParameters>
+    </asp:SqlDataSource>
+    </form>
+</body>
+</html>

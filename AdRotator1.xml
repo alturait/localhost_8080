@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Advertisements>
+  <Ad>
+    <!-- The URL for the ad image -->
+    <ImageUrl>Images/SlideShow/active.jpg</ImageUrl>
+    <!-- The URL the ad redirects the user to -->
+    <NavigateUrl>http://www.donaldson.com/en/index.html</NavigateUrl>
+    <!-- The alternate text for the image -->
+    <AlternateText>Slide1</AlternateText>
+    <!-- The relative number of times this ad should appear -->
+    <!-- compared to the others -->
+    <Impressions>80</Impressions>
+    <!-- The topic of this ad (used for filtering) -->
+    <Keyword>ProductInfo</Keyword>
+  </Ad>
+  <Ad>
+    <!-- The URL for the ad image -->
+    <ImageUrl>Images/SlideShow/alemite.jpg</ImageUrl>
+    <!-- The URL the ad redirects the user to -->
+    <NavigateUrl>http://www.donaldson.com/en/index.html</NavigateUrl>
+    <!-- The alternate text for the image -->
+    <AlternateText>Slide1</AlternateText>
+    <!-- The relative number of times this ad should appear -->
+    <!-- compared to the others -->
+    <Impressions>80</Impressions>
+    <!-- The topic of this ad (used for filtering) -->
+    <Keyword>ProductInfo</Keyword>
+  </Ad>
+  <Ad>
+    <!-- The URL for the ad image -->
+    <ImageUrl>Images/SlideShow/baldwin.jpg</ImageUrl>
+    <!-- The URL the ad redirects the user to -->
+    <NavigateUrl>http://www.donaldson.com/en/index.html</NavigateUrl>
+    <!-- The alternate text for the image -->
+    <AlternateText>Slide1</AlternateText>
+    <!-- The relative number of times this ad should appear -->
+    <!-- compared to the others -->
+    <Impressions>80</Impressions>
+    <!-- The topic of this ad (used for filtering) -->
+    <Keyword>ProductInfo</Keyword>
+  </Ad>
+</Advertisements>

@@ -1,0 +1,204 @@
+﻿<%@ Master Language="VB" CodeFile="Admin - Copy.master.vb" Inherits="main_Admin" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <script src="../ddmenu.js"></script>
+    <link href="App_Themes/LubeTracker/ddmenu.css" rel="stylesheet" />
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <table style="width: 1024px">
+            <tr>
+                <td style="vertical-align: bottom; text-align: center;">
+                    <asp:ImageButton ID="logobtn" runat="server" Height="80" />
+                </td>
+                <td style="text-align: center">                    
+                    <asp:DropDownList ID="companydd" runat="server" AutoPostBack="True" DataSourceID="SqlCompanies" DataTextField="company" DataValueField="companyID" AppendDataBoundItems="True" Font-Size="Medium">
+                        <asp:ListItem Value="0">Desert Fleet Outfitters</asp:ListItem>
+                    </asp:DropDownList>
+                    <asp:LinkButton ID="newcustomerbtn" runat="server" Text="New Customer" />
+                </td>
+                <td style="text-align: center; width: 300px;">
+                     <asp:LinkButton ID="favbtn" runat="server" Text="Favorites" /><asp:Label ID="favcountlbl" runat="server"></asp:Label><br />
+                     <asp:LinkButton ID="cartbtn" runat="server" Text="View Cart" /><asp:Label ID="cartcountlbl" runat="server"></asp:Label><br />
+                     <asp:LinkButton ID="logoffbtn" runat="server" Text="Log Off" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <nav id="ddmenu">
+    
+                        <ul>
+                            <%If Session("selected_companyID") = "0" Then%>
+                            <li>
+                                <span class="top-heading"><a href="Default.aspx">DFO</a></span>
+                                <div class="dropdown">
+                                    <div class="dd-inner">
+                                        <div class="column">
+                                            <h3>ACCOUNT INFO</h3>
+                                            <a href="Company.aspx">Company Information</a>
+                                            <a href="AccountsByRep.aspx">Customer Sales</a>
+                                            <a href="MailingList.aspx">Mailing List</a>
+                                            <a href="Flyer.aspx">Flyers</a>
+                                            <a href="Manufacturers.aspx">Manufacturers</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="top-heading">Sales</span>
+                                <div class="dropdown">
+                                    <div class="dd-inner">
+                                        <div class="column">
+                                            <h3>SALES</h3>
+                                            <a href="OpenOrders.aspx"><asp:Label ID="openorderslbl" runat="server" /></a>
+                                            <a href="OpenReturns.aspx"><asp:Label ID="returnslbl" runat="server" /></a>
+                                            <a href="NewOrders.aspx"><asp:Label ID="neworderslbl" runat="server" /></a>
+                                            <a href="Shipments.aspx"><asp:Label ID="shiplbl" runat="server" /></a>
+                                            <a href="Invoices.aspx"><asp:Label ID="invoicelbl" runat="server" /></a>
+                                            <a href="Billing.aspx"><asp:Label ID="billinglbl" runat="server" /></a>
+                                            <a href="ActiveQuotes.aspx"><asp:Label ID="quoteslbl" runat="server" /></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="top-heading">Purchasing</span>
+                                <div class="dropdown">
+                                    <div class="dd-inner">
+                                        <div class="column">
+                                            <h3>PURCHASING</h3>
+                                            <a href="InventoryDashboard.aspx"><asp:Label ID="inventorylbl" runat="server" /></a>
+                                            <a href="RequisitionDashboard.aspx"><asp:Label ID="requisitionlbl" runat="server" /></a>
+                                            <a href="PurchaseOrders.aspx"><asp:Label ID="poslbl" runat="server" /></a>
+                                            <a href="POHistory.aspx">PO History</a>
+                                            <a href="MySuppliers.aspx">Suppliers</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="top-heading"><a href="LubeTracker.aspx">LubeTracker</a></span>
+                                <div class="dropdown">
+                                    <div class="dd-inner">
+                                        <div class="column">
+                                            <h3>LUBETRACKER</h3>
+                                            <div>
+                                                <a href="Top25.aspx">Top 25</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <%Else%>
+                            <li>
+                                <span class="top-heading"><a href="Default.aspx"><%=companydd.SelectedItem.Text%></a></span>
+                                <div class="dropdown">
+                                    <div class="dd-inner">
+                                        <div class="column">
+                                            <h3>ACCOUNT INFO</h3>
+                                            <a href="Company.aspx">Company Information</a>
+                                            <a href="Locations.aspx">Locations</a>
+                                            <a href="Contacts.aspx">Users</a>
+                                            <a href="Discounts.aspx">Discounts</a>
+                                            <a href="CustomerRequisitions.aspx">Requirements</a>
+                                            <a href="Warehouse.aspx">Stock Room</a>
+                                            <a href="Orders.aspx">Open Orders</a>
+                                            <a href="OrderHistory.aspx">Order History</a>
+                                            <a href="CustomerInvoices.aspx">Invoices</a>
+                                            <a href="Quotes.aspx">Quotes</a>
+                                            <a href="Returns.aspx">Returns</a>
+                                            <a href="Usage.aspx">Usage</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="top-heading">LubeTracker</span>
+                                <div class="dropdown">
+                                    <div class="dd-inner">
+                                        <div class="column">
+                                            <h3>LUBETRACKER</h3>
+                                            <a href="OpenKits.aspx">Kits On Order</a>
+                                            <a href="Assets.aspx"><asp:Label ID="assetslbl" runat="server" /></a>
+                                            <a href="PartSummary.aspx"><asp:Label ID="partslbl" runat="server" /></a>
+                                            <a href="ModifyAllKits.aspx">Kit Tools</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <%End If%>
+                            <li>
+                                <span class="top-heading"><a href="VCatalog.aspx?categoryID=0">Catalog</a></span>
+                                <div class="dropdown">
+                                    <div class="dd-inner">
+                                        <div class="column">
+                                            <h3>Products</h3>
+                                            <%If Session("selected_companyID") <> "0" Then%>
+                                                <a href="Favorites.aspx">Favorite Items</a>
+                                            <%End If%>
+                                            <a href="Product.aspx">New Product</a>
+                                            <a href="Categories.aspx?categoryID=0">Categories</a>
+                                            <asp:DataList ID="DataList1" runat="server" DataSourceID="SqlCategory" DataKeyField="categoryID">
+                                                <ItemTemplate>
+                                                    <a href='VCatalog.aspx?categoryID=<%# Eval("categoryID")%>'><asp:Label ID="categoryLabel" runat="server" Text='<%# Eval("category") %>' /></a>
+                                                </ItemTemplate>
+                                            </asp:DataList>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <asp:Panel ID="Panel5" runat="server" DefaultButton="searchbtn">
+                                    <asp:TextBox ID="searchterm" runat="server" Width="100" Font-Size="Small"></asp:TextBox>
+                                    <asp:LinkButton ID="searchbtn" runat="server" Text="Search" />
+                                </asp:Panel>
+                            </li>                    
+                            <li>
+                                <asp:Panel ID="Panel1" runat="server">
+                                    <asp:LinkButton ID="advsearchbtn" runat="server" Text="ADVANCED SEARCH" Font-Size="XX-Small" />
+                                </asp:Panel>
+                            </li>
+                        </ul>
+                    </nav>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+                        
+                    </asp:ContentPlaceHolder>
+                </td>
+            </tr>
+            <tr>
+                <td style="font-size: x-small; text-align: center;" colspan="3">
+                    Copyright 2015 Desert Fleet Outfitters. All Rights Reserved.<br />
+                    <asp:Label ID="ssIDlbl" runat="server"></asp:Label>
+                </td>
+            </tr>
+        </table>
+        <asp:SqlDataSource ID="SqlUserCompanies" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [companyID], [company] FROM [v_user_company] WHERE ([userID] = @userID) and vendorID=@vendorID ORDER BY [company]">
+            <SelectParameters>
+                <asp:SessionParameter Name="userID" SessionField="userID" Type="Int32" />
+                <asp:SessionParameter DefaultValue="" Name="vendorID" SessionField="vendorID" />
+            </SelectParameters>
+        </asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlCompanies" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [companyID], [company] FROM [t_company] WHERE customer=@customer and vendorID=@vendorID  ORDER BY [company]">
+            <SelectParameters>
+                <asp:Parameter DefaultValue="True" Name="customer" />
+                <asp:SessionParameter DefaultValue="" Name="vendorID" SessionField="vendorID" />
+            </SelectParameters>
+        </asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlCategory" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [categoryID], [category] FROM [t_category] WHERE ([parentID] = @parentID) ORDER BY [category]">
+            <SelectParameters>
+                <asp:Parameter DefaultValue="0" Name="parentID" />
+            </SelectParameters>
+        </asp:SqlDataSource>
+    </form>
+</body>
+</html>

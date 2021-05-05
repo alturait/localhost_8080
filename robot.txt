@@ -1,0 +1,6 @@
+﻿User-agent: *
+Disallow: /bin/
+Disallow: /main/
+Disallow: /PDF/
+Disallow: /App_Themes/
+Disallow: /App_Code/

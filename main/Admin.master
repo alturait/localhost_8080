@@ -1,0 +1,129 @@
+﻿<%@ Master Language="VB" CodeFile="Admin.master.vb" Inherits="main_Admin" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <script src="../ddmenu.js"></script>
+    <link href="App_Themes/LubeTracker/ddmenu.css" rel="stylesheet" />
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <table style="padding: 5px; width: 1024px">
+            <tr>
+                <td style="width: 15%; padding: 5px;"><asp:ImageButton ID="logobtn" runat="server" Height="80" /></td>
+                <td style="width: 75%; padding: 5px;">
+                    <%If Session("selected_companyID") = "0" Then%>
+                    <table style="width: 100%">
+                        <tr>
+                            <td style="text-align: center"><a href="VCatalog.aspx?categoryID=0&menu=catalog"><img src="../Images/catalog.jpg" height="50" /><br />Catalog</a></td>
+                            <td style="text-align: center"><a href="NewOrders.aspx?menu=sales"><img src="../Images/salesicon.jpg" height="50" /><br />Sales</a></td>
+                            <td style="text-align: center"><a href="RecentLogins.aspx?menu=web"><img src="../Images/website.jpg" height="50" /><br />Marketing</a></td>
+                            <td style="text-align: center"><a href="OpenKits.aspx?menu=lubetracker1"><img src="../Images/lubetracker.jpg" height="50" /><br />LubeTracker</a></td>
+                            <td style="text-align: center"><a href="OpenWorkOrders.aspx?menu=workorders"><img src="../Images/repairicon.jpg" height="50" /><br />Work Orders</a></td>
+                            <td style="text-align: center"><a href="PurchaseOrders.aspx?menu=purchasing"><img src="../Images/purchasingicon.jpg" height="50" /><br />Purchasing</a></td>
+                            <td style="text-align: center"><a href="ShippingHome.aspx?menu=shipping"><img src="../Images/shippingicon.jpg" height="50" /><br />Shipping</a></td>
+                            <td style="text-align: center"><a href="Billing.aspx?menu=accounting"><img src="../Images/accountingicon.jpg" height="50" /><br />Invoicing</a></td>
+                        </tr>
+                    </table>
+                    <%Else%>
+                    <table style="width: 100%">
+                        <tr>
+                            <td style="text-align: center"><a href="VCatalog.aspx?categoryID=0&menu=catalog"><img src="../Images/catalog.jpg" height="50" /><br />Catalog</a></td>
+                            <td style="text-align: center"><a href="Company.aspx?menu=csettings"><img src="../Images/infoicon.jpg" height="50" /><br />Settings</a></td>
+                            <td style="text-align: center"><a href="OrdersHome.aspx?menu=corders"><img src="../Images/orders.jpg" height="50" /><br />Orders</a></td>
+                            <td style="text-align: center"><a href="Assets.aspx?menu=lubetracker2"><img src="../Images/lubetracker.jpg" height="50" /><br />LubeTracker</a></td>
+                            <td style="text-align: center"><a href="Warehouse.aspx?menu=stockroom"><img src="../Images/stockroom.jpg" height="50" /><br />Stock Room</a></td>
+                            <td style="text-align: center"><a href="CustomerRequisitions.aspx?menu=crequirements"><img src="../Images/purchasingicon.jpg" height="50" /><br />Requirements</a></td>
+                        </tr>
+                    </table>
+                    <%End If%>
+                </td>
+                <td style="width: 10%; padding: 5px;">
+                    <asp:Label ID="namelbl" runat="server" Font-Bold="True"></asp:Label><br />
+                    <asp:LinkButton ID="cartbtn" runat="server" Text="View Cart" /><br /><asp:Label ID="cartcountlbl" runat="server"></asp:Label><br />
+                    <asp:LinkButton ID="logoffbtn" runat="server" Text="Log Off" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" style="background-color: #000066; color: #FFFFFF; padding: 5px;">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td>
+                                <asp:Label ID="submenulbl" runat="server" ForeColor="White" CssClass="heading1"></asp:Label>
+                            </td>
+                            <td style="text-align: right;">
+                                <asp:Panel ID="customerddpanel" runat="server">
+                                    <asp:DropDownList ID="companydd" runat="server" AutoPostBack="True" DataSourceID="SqlCompanies" DataTextField="company" DataValueField="companyID" AppendDataBoundItems="True" Font-Size="Medium">
+                                    </asp:DropDownList>
+                                </asp:Panel>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+                <tr>
+                    <td style="background-color: #000000; padding: 5px;" colspan="3">
+                        <table style="width: 100%">
+                            <tr>
+                                <td>
+                                    <asp:LinkButton ID="newproductbtn1" runat="server" ForeColor="White">New Product</asp:LinkButton>
+                                </td>
+                                <td>
+                                    <asp:LinkButton ID="newcustomerbtn" runat="server" Text="New Customer" ForeColor="White" />
+                                </td>
+                                <td style="text-align: right;">
+                                    <asp:Panel ID="pnsearchpanel" runat="server" DefaultButton="searchbtn" Visible="True">
+                                        <asp:TextBox ID="searchterm" runat="server" Width="100" Font-Size="Small"></asp:TextBox>
+                                        <asp:DropDownList ID="searchdd" runat="server">
+                                            <asp:ListItem Value="1">Catalog</asp:ListItem>
+                                            <asp:ListItem Value="2">Equipment</asp:ListItem>
+                                            <asp:ListItem Value="3">Usage</asp:ListItem>
+                                            <asp:ListItem Value="4">Orders</asp:ListItem>
+                                            <asp:ListItem Value="5">Invoices</asp:ListItem>
+                                            <asp:ListItem Value="6">Purchase Orders</asp:ListItem>
+                                        </asp:DropDownList>
+                                        &nbsp;
+                                        <asp:Button ID="searchbtn" runat="server" Text="Search" />&nbsp;
+                                    </asp:Panel>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            <tr>
+                <td colspan="3">
+                    <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+                        
+                    </asp:ContentPlaceHolder>
+                </td>
+            </tr>
+            <tr>
+                <td style="font-size: x-small; text-align: center;" colspan="3">
+                    Copyright 2015 Desert Fleet Outfitters. All Rights Reserved.<br />
+                    <asp:Label ID="ssIDlbl" runat="server"></asp:Label>
+                </td>
+            </tr>
+        </table>
+        <asp:SqlDataSource ID="SqlUserCompanies" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [companyID], [company] FROM [t_company] WHERE ([repID] = @userID) ORDER BY [company]">
+            <SelectParameters>
+                <asp:SessionParameter Name="userID" SessionField="userID" Type="Int32" />
+            </SelectParameters>
+        </asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlCompanies" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [companyID], [company] FROM [t_company] WHERE customer=@customer and vendorID=@vendorID  ORDER BY [company]">
+            <SelectParameters>
+                <asp:Parameter DefaultValue="True" Name="customer" />
+                <asp:SessionParameter DefaultValue="" Name="vendorID" SessionField="vendorID" />
+            </SelectParameters>
+        </asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlCategory" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [categoryID], [category] FROM [t_category] WHERE ([parentID] = @parentID) ORDER BY [category]">
+            <SelectParameters>
+                <asp:Parameter DefaultValue="0" Name="parentID" />
+            </SelectParameters>
+        </asp:SqlDataSource>
+    </form>
+</body>
+</html>

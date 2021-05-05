@@ -1,0 +1,85 @@
+﻿<%@ Master Language="VB" CodeFile="Vendor.master.vb" Inherits="EST_Vendor" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <table style="background-color: #FFFFFF; width: 1024px;">
+            <tr>    
+                <td style="width: 300px; text-align: left;" rowspan="2">
+                    <asp:ImageButton ID="logobtn" runat="server" />
+                </td>
+                <td style="text-align: center;" rowspan="2">
+                    <asp:Label ID="namelbl" runat="server" Font-Bold="True" Font-Size="Medium"></asp:Label>
+                    <br />
+                    <asp:LinkButton ID="mycompanybtn" runat="server" /><br /><br />
+                    <asp:LinkButton ID="loginbtn" runat="server" Text="Log Off" CssClass="push_button1 orange" CausesValidation="False" />
+                </td>
+                <td style="text-align: right; width: 500px;">
+                    <asp:DropDownList ID="companydd" runat="server" AutoPostBack="True" DataSourceID="SqlCompanies" DataTextField="company" DataValueField="companyID" AppendDataBoundItems="True" Font-Size="Medium">
+                        <asp:ListItem Value="0">Desert Fleet Outfitters</asp:ListItem>
+                    </asp:DropDownList>
+                    <asp:LinkButton ID="cartbtn" runat="server" Text="Cart" CssClass="push_button1 orange" ToolTip="View Shopping Cart" />
+                    <asp:LinkButton ID="accountbtn" runat="server" Text="Edit" CssClass="push_button1 orange" ToolTip="Edit this customer's Company Information" />
+                    <asp:LinkButton ID="newcustomerbtn" runat="server" Text="New" CssClass="push_button1 orange" CausesValidation="False" ToolTip="Create a New Customer" />
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right;">
+                    <asp:LinkButton ID="homebtn" runat="server" Text="Home" CssClass="push_button1 orange" CausesValidation="False" />
+                    <asp:LinkButton ID="flyersbtn" runat="server" Text="Flyers" CssClass="push_button1 orange" CausesValidation="False" />
+                    <asp:LinkButton ID="assetbtn" runat="server" Text="Assets" CssClass="push_button1 orange" CausesValidation="False" />
+                    <asp:LinkButton ID="kitsbtn" runat="server" Text="Kits" CssClass="push_button1 orange" CausesValidation="False" />
+                    <asp:LinkButton ID="pobtn" runat="server" Text="Purchasing" CssClass="push_button1 orange" CausesValidation="False" />
+                    <asp:LinkButton ID="ordersbtn" runat="server" Text="Sales" CssClass="push_button1 orange" CausesValidation="False" />
+                    <asp:LinkButton ID="vordersbtn" runat="server" Text="Sales" CssClass="push_button1 orange" CausesValidation="False" />
+                    <asp:LinkButton ID="shipmentsbtn" runat="server" Text="Shipping" CssClass="push_button1 orange" CausesValidation="False" />
+                    <asp:LinkButton ID="invoicesbtn" runat="server" Text="Invoicing" CssClass="push_button1 orange" CausesValidation="False" />
+                    <asp:LinkButton ID="catalogbtn" runat="server" Text="Catalog" CssClass="push_button1 orange" CausesValidation="False" />
+                    <asp:LinkButton ID="favoritesbtn" runat="server" Text="Favorites" CssClass="push_button1 orange" CausesValidation="False" />
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color: #000000; padding-top: 10px;" colspan="3"></td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+                        
+                    </asp:ContentPlaceHolder>
+                </td>
+            </tr>
+            <asp:Panel ID="AdminPanel" runat="server">
+                <tr>
+                    <td colspan="3">
+                        <asp:Label ID="sessionlbl" runat="server"></asp:Label>
+                    </td>
+                </tr>
+            </asp:Panel>
+            <tr>
+                <td style="text-align: center" colspan="3">
+                    <p>© Ken Gardner 2014. All Rights Reserved. LUBETRACKER™ is a registered trademark.</p>
+                </td>
+            </tr>
+        </table>
+        <asp:SqlDataSource ID="SqlUserCompanies" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [companyID], [company] FROM [v_user_company] WHERE ([userID] = @userID) and vendorID=@vendorID ORDER BY [company]">
+            <SelectParameters>
+                <asp:SessionParameter Name="userID" SessionField="userID" Type="Int32" />
+                <asp:SessionParameter DefaultValue="" Name="vendorID" SessionField="vendorID" />
+            </SelectParameters>
+        </asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlCompanies" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [companyID], [company] FROM [t_company] WHERE customer=@customer and vendorID=@vendorID  ORDER BY [company]">
+            <SelectParameters>
+                <asp:Parameter DefaultValue="True" Name="customer" />
+                <asp:SessionParameter DefaultValue="" Name="vendorID" SessionField="vendorID" />
+            </SelectParameters>
+        </asp:SqlDataSource>
+    </form>
+</body>
+</html>
